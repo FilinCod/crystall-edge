@@ -19,7 +19,7 @@ public abstract class SharedGeigerSystem : EntitySystem
         var currentRads = component.CurrentRadiation;
         var rads = currentRads.ToString("N1");
         var color = LevelToColor(component.DangerLevel);
-        var msg = Loc.GetString("geiger-component-examine",
+        var msg = Loc.GetString("ce-aura-scanner-popup",
             ("rads", rads), ("color", color));
         args.PushMarkup(msg);
     }

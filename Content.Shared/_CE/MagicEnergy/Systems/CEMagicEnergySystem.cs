@@ -1,22 +1,27 @@
 using Content.Shared._CE.MagicEnergy.Components;
 using Content.Shared.Alert;
 using Content.Shared.Damage;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Jittering;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.Rounding;
+using Content.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._CE.MagicEnergy.Systems;
 
-public abstract class CESharedMagicEnergySystem : EntitySystem {
+public abstract class CESharedMagicEnergySystem : EntitySystem
+{
 
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] protected readonly SharedPopupSystem Popup = default!;
+    [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] private readonly AlertsSystem _alert = default!;
+    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<CEEnergyAlertComponent, ComponentStartup>(OnStartup);
@@ -54,11 +59,11 @@ public abstract class CESharedMagicEnergySystem : EntitySystem {
     {
         _damageable.TryChangeDamage(ent, ent.Comp.Damage * args.Overcharge, interruptsDoAfters: false);
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(0.5f), true, 2, 8);
-        _popup.PopupEntity(Loc.GetString(ent.Comp.Popup), ent, PopupType.SmallCaution);
+        Popup.PopupEntity(Loc.GetString(ent.Comp.Popup), ent, PopupType.SmallCaution);
 
         var xform = Transform(ent);
         SpawnAtPosition(ent.Comp.VFX, xform.Coordinates);
-        _audio.PlayPvs(ent.Comp.OverchargeSound, xform.Coordinates);
+        Audio.PlayPvs(ent.Comp.OverchargeSound, xform.Coordinates);
     }
 
     private void OnShutdown(Entity<CEEnergyAlertComponent> ent, ref ComponentShutdown args)

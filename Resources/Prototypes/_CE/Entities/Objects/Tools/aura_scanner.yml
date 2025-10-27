@@ -1,0 +1,44 @@
+- type: entity
+  parent: BaseItem
+  id: CEAuraScanner
+  name: aura scanner
+  description: A handheld device used to detect and measure ambient magical energy levels in the surrounding area.
+  categories: [ ForkFiltered ]
+  components:
+  - type: Sprite
+    sprite: _CE/Objects/Tools/aura_scanner.rsi
+    layers:
+      - state: icon
+      - state: cr
+        shader: unshaded
+        visible: false
+        map: ["Crystal"]
+      - state: on_empty
+        shader: unshaded
+        map: ["On"]
+  #- type: PhysicalComposition
+  #  materialComposition:
+  #    CEBrass: 10
+  - type: Geiger
+    showControl: true
+    showExamine: true
+    broadcastAudio: true
+    sounds:
+      Low: /Audio/_CE/Effects/aura_scanner.ogg
+      Med: /Audio/_CE/Effects/aura_scanner.ogg
+      High: /Audio/_CE/Effects/aura_scanner.ogg
+      Extreme: /Audio/_CE/Effects/aura_scanner.ogg
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.GeigerVisuals.IsEnabled:
+        Crystal:
+          True: { visible: True }
+          False: { visible: False }
+      enum.GeigerVisuals.DangerLevel:
+        GeigerLayers.Screen:
+          None: {state: on_empty}
+          Low: {state: on_med}
+          Med: {state: on_med}
+          High: {state: on_med}
+          Extreme: {state: on_med}
