@@ -19,8 +19,8 @@ public sealed class CEPlantLightSystem : EntitySystem
         var lightcomp = EnsureComp<PointLightComponent>(uid);
         EnsureComp<PointLightComponent>(uid);
         _light.SetColor(uid, comp.Color, lightcomp);
-        _light.SetRadius(uid, comp.Radius * args.Plant.Comp.GrowthLevel, lightcomp);
-        _light.SetEnergy(uid, comp.Energy * args.Plant.Comp.GrowthLevel, lightcomp);
+        _light.SetRadius(uid, comp.Maxradius * args.Plant.Comp.GrowthLevel, lightcomp);
+        _light.SetEnergy(uid, comp.Maxenergy * args.Plant.Comp.GrowthLevel, lightcomp);
     }
 
 

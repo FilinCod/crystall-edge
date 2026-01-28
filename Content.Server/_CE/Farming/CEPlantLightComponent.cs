@@ -4,9 +4,9 @@ namespace Content.Server._CE.Farming;
 public sealed partial class CEPlantLightComponent : Component
 {
     [DataField]
-    public float Radius = 5f;
+    public float Maxradius = 5f;
     [DataField]
-    public float Energy = 5f;
+    public float Maxenergy = 5f;
     [DataField]
     public Color Color { get; set; } = Color.White;
 }
