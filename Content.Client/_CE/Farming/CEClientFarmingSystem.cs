@@ -2,9 +2,7 @@ using Content.Shared._CE.Farming;
 using Content.Shared._CE.Farming.Components;
 using Content.Shared.Rounding;
 using Robust.Client.GameObjects;
-using Robust.Shared.Random;
-
-namespace Content.Client._CE.Farming;
+ывыфвф
 
 public sealed partial class CEClientFarmingSystem : CESharedFarmingSystem
 {
