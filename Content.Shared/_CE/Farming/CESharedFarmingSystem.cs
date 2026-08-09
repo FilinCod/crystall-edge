@@ -45,6 +45,7 @@ public abstract partial class CESharedFarmingSystem : EntitySystem
         InitializeGather();
         InitializeGatherAdditional();
         InitializeExamine();
+        InitializeManaGrow();
 
         PlantQuery = GetEntityQuery<CEPlantComponent>();
         PlantProducingQuery = GetEntityQuery<CEPlantProducingComponent>();

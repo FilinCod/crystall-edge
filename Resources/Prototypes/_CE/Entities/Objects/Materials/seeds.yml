@@ -242,3 +242,25 @@
   - type: Stack
     stackType: CESeedCarrot
     count: 30
+
+- type: entity
+  id: CESeedManaFruit
+  name: cabbage seeds
+  description: Oh, no, my cabbage!
+  parent: CEBaseSeed
+  components:
+  - type: Sprite
+    sprite: _CE/Objects/Consumable/Food/cabbage.rsi
+  - type: CESeed
+    plantProto: CEPlantManaFruit
+  - type: Stack
+    stackType: CESeedCabbage
+
+- type: entity
+  id: CESeedManaFruit30
+  parent: CESeedManaFruit
+  suffix: 30
+  components:
+  - type: Stack
+    stackType: CESeedManaFruit
+    count: 30
